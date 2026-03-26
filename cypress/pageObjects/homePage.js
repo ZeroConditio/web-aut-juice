@@ -73,4 +73,12 @@ export class HomePage extends BasePage {
   static get changeCardAmount(){
     return cy.get('mat-option');
   }
+
+  static get addToCartButton(){
+    return cy.get('button[aria-label="Add to Basket"]');
+  }
+
+  static get shoppingCartButton(){
+    return cy.get('[class="hide-lt-md basket-label"]')
+  }
 }
