@@ -61,4 +61,16 @@ export class HomePage extends BasePage {
   static get submitButton(){
     return cy.get('#submitButton');
   }
+
+  static get cardAmount(){
+    return cy.get('.mat-mdc-select-min-line');
+  }
+
+  static get cardAmountSelect() {
+    return cy.get('.mat-mdc-paginator-page-size-select');
+  }
+
+  static get changeCardAmount(){
+    return cy.get('mat-option');
+  }
 }
