@@ -1,4 +1,5 @@
-import { HomePage } from '../pageObjects/HomePage';
+import { HomePage } from '../pageObjects/homePage';
+import { LoginPage } from '../pageObjects/loginPage';
 
 describe('Juice-shop scenarios', () => {
   context('Without auto login', () => {
@@ -10,17 +11,26 @@ describe('Juice-shop scenarios', () => {
 
     it('Login', () => {
       // Click Account button
+      HomePage.accountButton.click();
       // Click Login button
+      HomePage.loginButton.click();
       // Set email value to "demo"
+      LoginPage.emailField.type('demo');
       // Set password value to "demo"
+      LoginPage.passwordField.type('demo');
       // Click Log in
+      LoginPage.loginButton.click();
       // Click Account button
+      HomePage.accountButton.click();
       // Validate that "demo" account name appears in the menu section
+      HomePage.userProfileButton.should('contain.text', 'demo');
     });
 
     it('Registration', () => {
       // Click Account button
+      
       // Login button
+      
       // Click "Not yet a customer?"
       // Find - how to generate random number in JS
       // Use that number to genarate unique email address, e.g.: email_7584@ebox.com
