@@ -41,4 +41,8 @@ export class HomePage extends BasePage {
   static get productBoxInfo(){
     return cy.get('mat-dialog-content .details-row');
   }
+
+  static get closeButton(){
+    return cy.get('.close-dialog');
+  }
 }
