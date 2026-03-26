@@ -8,6 +8,7 @@ import { OrderSummaryPage } from '../pageObjects/orderSummaryPage';
 import { PaymentsOptionPage } from '../pageObjects/PaymentOptionsPage';
 import { RegistrationPage } from '../pageObjects/registrationPage';
 import { SavedAddressesPage } from '../pageObjects/SavedAddressesPage';
+import { SavedPaymentMethodsPage } from '../pageObjects/SavedPaymentMethodsPage';
 import { SelectAddressPage } from '../pageObjects/SelectAddressPage';
 
 describe('Juice-shop scenarios', () => {
@@ -239,21 +240,29 @@ describe('Juice-shop scenarios', () => {
       CreateAddressPage.addressCheckField.should('contain.text', 'The street 2, The big one, Largest, UG1234');
     });
 
-
-    it.only('Add address', () =>{
-
-    })
     // Create scenario - Add payment option
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My payment options
-    // Create page object - SavedPaymentMethodsPage
-    // Click Add new card
-    // Fill in Name
-    // Fill in Card Number
-    // Set expiry month to 7
-    // Set expiry year to 2090
-    // Click Submit button
-    // Validate that the card shows up in the list
+    it.only('Add address', () =>{
+      // Click on Account
+      HomePage.accountButton.click();
+      // Click on Orders & Payment
+      HomePage.OrderAndPaymentButton.click();
+      // Click on My payment options
+      HomePage.MyPaymentOptionsButton.click();
+      // Create page object - SavedPaymentMethodsPage
+      // Click Add new card
+      SavedPaymentMethodsPage.AddNewButton.click();
+      // Fill in Name
+      SavedPaymentMethodsPage.NameField.type('John');
+      // Fill in Card Number
+      SavedPaymentMethodsPage.CardField.type('1234567890123456');
+      // Set expiry month to 7
+      SavedPaymentMethodsPage.ExpiryMonthField.select('7');
+      // Set expiry year to 2090
+      SavedPaymentMethodsPage.ExpiryYearField.select('2090');
+      // Click Submit button
+      SavedPaymentMethodsPage.submitButton.click();
+      // Validate that the card shows up in the list
+      SavedPaymentMethodsPage.verifyCard.should('contain.text', '3456');
+    })
   });
 });

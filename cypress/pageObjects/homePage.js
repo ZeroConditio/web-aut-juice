@@ -33,6 +33,10 @@ export class HomePage extends BasePage {
     return cy.get('[aria-label="Go to saved address page"]');
   }
 
+  static get MyPaymentOptionsButton(){
+    return cy.get('[aria-label="Go to saved payment methods page"]');
+  }
+
   static get searchIcon(){
     return cy.get('#searchQuery')
   }
