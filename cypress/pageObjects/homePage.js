@@ -53,4 +53,12 @@ export class HomePage extends BasePage {
   static get comment(){
     return cy.get('.comment');
   }
+
+  static get reviewField(){
+    return cy.get('textarea[placeholder="What did you like or dislike?"]');
+  }
+
+  static get submitButton(){
+    return cy.get('#submitButton');
+  }
 }
