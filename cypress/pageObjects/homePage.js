@@ -23,7 +23,14 @@ export class HomePage extends BasePage {
 
   static get userProfileButton(){
     return cy.get("button[aria-label='Go to user profile']");
-    // return cy.get("button[aria-label='Go to user profile']").find('XXXXX');
+  }
+
+  static get OrderAndPaymentButton(){
+    return cy.get('button[aria-label="Show Orders and Payment Menu"]');
+  }
+
+  static get MySavedAddressButton(){
+    return cy.get('[aria-label="Go to saved address page"]');
   }
 
   static get searchIcon(){

@@ -1,4 +1,5 @@
 import { BasketPage } from '../pageObjects/basketPage';
+import { CreateAddressPage } from '../pageObjects/CreateAddressPage';
 import { DeliveryMethodPage } from '../pageObjects/DeliveryMethodPage';
 import { HomePage } from '../pageObjects/homePage';
 import { LoginPage } from '../pageObjects/loginPage';
@@ -6,6 +7,7 @@ import { OrderCompletionPage } from '../pageObjects/OrderCompletionPage';
 import { OrderSummaryPage } from '../pageObjects/orderSummaryPage';
 import { PaymentsOptionPage } from '../pageObjects/PaymentOptionsPage';
 import { RegistrationPage } from '../pageObjects/registrationPage';
+import { SavedAddressesPage } from '../pageObjects/SavedAddressesPage';
 import { SelectAddressPage } from '../pageObjects/SelectAddressPage';
 
 describe('Juice-shop scenarios', () => {
@@ -176,7 +178,7 @@ describe('Juice-shop scenarios', () => {
     });
 
     // Create scenario - Buy Girlie T-shirt
-    it.only('Validate product card amount', () =>{
+    it('Validate product card amount', () =>{
       // Click on search icon
       HomePage.searchIcon.click();
       // Search for Girlie
@@ -212,16 +214,35 @@ describe('Juice-shop scenarios', () => {
     });
 
     // Create scenario - Add address
-    // Click on Account
-    // Click on Orders & Payment
-    // Click on My saved addresses
-    // Create page object - SavedAddressesPage
-    // Click on Add New Address
-    // Create page object - CreateAddressPage
-    // Fill in the necessary information
-    // Click Submit button
-    // Validate that previously added address is visible
+    it('Add address', () =>{
+      // Click on Account
+      HomePage.accountButton.click();
+      // Click on Orders & Payment
+      HomePage.OrderAndPaymentButton.click();
+      // Click on My saved addresses
+      HomePage.MySavedAddressButton.click();
+      // Create page object - SavedAddressesPage
+      // Click on Add New Address
+      SavedAddressesPage.addNewAddressButton.click();
+      // Create page object - CreateAddressPage
+      // Fill in the necessary information
+      CreateAddressPage.CountryField.type('Uganda');
+      CreateAddressPage.NameField.type('John');
+      CreateAddressPage.MobileField.type('22222234');
+      CreateAddressPage.ZipField.type('UG1234');
+      CreateAddressPage.AddressField.type('The street 2');
+      CreateAddressPage.CityField.type('The big one');
+      CreateAddressPage.StateField.type('Largest');
+      // Click Submit button
+      CreateAddressPage.SubmitButton.click();
+      // Validate that previously added address is visible
+      CreateAddressPage.addressCheckField.should('contain.text', 'The street 2, The big one, Largest, UG1234');
+    });
 
+
+    it.only('Add address', () =>{
+
+    })
     // Create scenario - Add payment option
     // Click on Account
     // Click on Orders & Payment
