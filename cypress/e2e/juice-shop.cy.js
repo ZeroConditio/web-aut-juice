@@ -1,5 +1,6 @@
 import { HomePage } from '../pageObjects/homePage';
 import { LoginPage } from '../pageObjects/loginPage';
+import { RegistrationPage } from '../pageObjects/registrationPage';
 
 describe('Juice-shop scenarios', () => {
   context('Without auto login', () => {
@@ -28,23 +29,39 @@ describe('Juice-shop scenarios', () => {
 
     it('Registration', () => {
       // Click Account button
-      
+      HomePage.accountButton.click();
       // Login button
-      
+      HomePage.loginButton.click();
       // Click "Not yet a customer?"
+      LoginPage.notYetCustomerLink.click();
       // Find - how to generate random number in JS
+      const randomNumber = Math.floor(Math.random() * 1000);;
       // Use that number to genarate unique email address, e.g.: email_7584@ebox.com
       // Save that email address to some variable
+      const email = `email_${randomNumber}@inbox.lv`;
+      RegistrationPage.emailField.type(email);
       // Fill in password field and repeat password field with same password
+      const password = 'password123';
+      RegistrationPage.passwordField.type(password);
+      RegistrationPage.repeatPasswordField.type(password);
       // Click on Security Question menu
+      RegistrationPage.securityQuestionDropdown.click();
       // Select  "Name of your favorite pet?"
+      RegistrationPage.securityQuestionsOptions.contains('Name of your favorite pet?').click();
       // Fill in answer
+      RegistrationPage.answerField.type("MyFavPet");
       // Click Register button
+      RegistrationPage.registerButton.click();
       // Set email value to previously created email
+      LoginPage.emailField.type(email);
       // Set password value to previously used password value
+      LoginPage.passwordField.type(password);
       // Click login button
+      LoginPage.loginButton.click();
       // Click Account button
+      HomePage.accountButton.click();
       // Validate that account name (with previously created email address) appears in the menu section
+      HomePage.userProfileButton.should('contain.text', email);
     });
   });
 
@@ -54,7 +71,7 @@ describe('Juice-shop scenarios', () => {
       HomePage.visit();
     });
 
-    it('Search and validate Lemon', () => {
+    it.only('Search and validate Lemon', () => {
       // Click on search icon
       // Search for Lemon
       // Select a product card - Lemon Juice (500ml)
